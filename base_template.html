@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }}
+        .container {{
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }}
+        h1 {{
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #003366;
+        }}
+        ul {{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }}
+        li {{
+            margin-bottom: 10px;
+            padding: 20px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 18px;
+            text-align: left;
+        }}
+        li:hover {{
+            background-color: #f0f0f0;
+        }}
+        a {{
+            text-decoration: none;
+            color: #402612;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }}
+        a:hover {{
+            color: #007BFF;
+        }}
+        .title {{
+            font-size: 22px;
+            margin: 10px 0;
+        }}
+        .item {{
+            font-size: 16px;
+            margin: 5px 0;
+        }}
+        .hidden {{
+            display: none;
+        }}
+        .show {{
+            display: block;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{title}</h1>
+        <ul>
+            {content}
+        </ul>
+        <a href="index.html">Back to Homepage</a>
+    </div>
+    <script>
+        function toggleItems(id) {{
+            var element = document.getElementById(id);
+            if (element.className === 'hidden') {{
+                element.className = 'show';
+                // Adjust scroll position
+                element.scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
+            }} else {{
+                element.className = 'hidden';
+            }}
+        }}
+
+        document.addEventListener('DOMContentLoaded', function() {{
+            document.querySelectorAll('.title').forEach(function(element) {{
+                element.addEventListener('click', function(event) {{
+                    event.preventDefault();  // Prevent default anchor behavior
+                    var targetId = this.getAttribute('href').substring(1);
+                    toggleItems(targetId);
+                }});
+            }});
+        }});
+    </script>
+</body>
+</html>
